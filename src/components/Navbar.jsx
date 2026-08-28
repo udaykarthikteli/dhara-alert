@@ -8,12 +8,23 @@ export default function Navbar({
   onOpenAiPredictor,
   onOpenReportForm,
   onOpenEmergencyContacts,
-  onOpenHome
+  onOpenHome,
+  currentPage = 'home',
+  onNavigatePage
 }) {
   const { langCode, setLangCode, languages, t } = useLanguage();
   const [langDropdownOpen, setLangDropdownOpen] = useState(false);
 
   const activeLangObj = languages.find((l) => l.code === langCode) || languages[0];
+
+  const navItems = [
+    { id: 'home', label: 'Overview' },
+    { id: 'map', label: 'GIS Map' },
+    { id: 'ai', label: 'AI Simulator' },
+    { id: 'highways', label: 'Highways' },
+    { id: 'reports', label: 'Field Reports' },
+    { id: 'helpline', label: 'Helplines' }
+  ];
 
   return (
     <header className="sticky top-0 z-40 bg-[#0a0f1d]/90 backdrop-blur-md border-b border-[#1e2c45] shadow-xl">
@@ -39,6 +50,25 @@ export default function Navbar({
             <p className="text-[11px] text-slate-400 hidden md:block">{t('subtitle')}</p>
           </div>
         </div>
+
+        {/* Page Nav Links (Desktop) */}
+        {onNavigatePage && (
+          <div className="hidden lg:flex items-center gap-1 bg-[#121b2d] p-1 rounded-xl border border-slate-800 text-xs">
+            {navItems.map((item) => (
+              <button
+                key={item.id}
+                onClick={() => onNavigatePage(item.id)}
+                className={`px-3 py-1.5 rounded-lg font-bold transition-all ${
+                  currentPage === item.id
+                    ? 'bg-cyan-500 text-black shadow-md'
+                    : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800'
+                }`}
+              >
+                {item.label}
+              </button>
+            ))}
+          </div>
+        )}
 
         {/* Header Actions */}
         <div className="flex items-center gap-2">
