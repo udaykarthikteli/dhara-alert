@@ -7,7 +7,8 @@ export default function Navbar({
   setIsOfficialMode,
   onOpenAiPredictor,
   onOpenReportForm,
-  onOpenEmergencyContacts
+  onOpenEmergencyContacts,
+  onOpenHome
 }) {
   const { langCode, setLangCode, languages, t } = useLanguage();
   const [langDropdownOpen, setLangDropdownOpen] = useState(false);
@@ -18,13 +19,17 @@ export default function Navbar({
     <header className="sticky top-0 z-40 bg-[#0a0f1d]/90 backdrop-blur-md border-b border-[#1e2c45] shadow-xl">
       <div className="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between gap-3">
         {/* Brand Logo & Title */}
-        <div className="flex items-center gap-3">
-          <div className="p-2.5 bg-gradient-to-tr from-cyan-500 to-blue-600 rounded-2xl shadow-lg shadow-cyan-500/20 text-black">
+        <div
+          onClick={onOpenHome}
+          className="flex items-center gap-3 cursor-pointer group"
+          title="Return to Home Landing Screen"
+        >
+          <div className="p-2.5 bg-gradient-to-tr from-cyan-500 to-blue-600 rounded-2xl shadow-lg shadow-cyan-500/20 text-black group-hover:scale-105 transition-transform">
             <Mountain className="w-6 h-6 stroke-[2.5]" />
           </div>
           <div>
             <div className="flex items-center gap-2">
-              <h1 className="font-extrabold text-slate-100 text-base md:text-xl tracking-tight">
+              <h1 className="font-extrabold text-slate-100 text-base md:text-xl tracking-tight group-hover:text-cyan-400 transition-colors">
                 {t('appTitle')}
               </h1>
               <span className="hidden sm:inline-block text-[10px] font-bold px-2 py-0.5 rounded-full bg-cyan-500/10 text-cyan-400 border border-cyan-500/30">

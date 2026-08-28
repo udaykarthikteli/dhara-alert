@@ -10,6 +10,7 @@ import RoadStatusBoard from './components/RoadStatusBoard';
 import AiPredictorModal from './components/AiPredictorModal';
 import FieldReportForm from './components/FieldReportForm';
 import EmergencyContactsModal from './components/EmergencyContactsModal';
+import LandingPage from './components/LandingPage';
 import { calculateAiLandslideRisk } from './utils/aiRiskEngine';
 import { nerStatesData, sampleCitizenReports } from './data/nerDistricts';
 import { getOfflineReports } from './utils/offlineStorage';
@@ -18,6 +19,7 @@ import { ShieldCheck, Cpu, Camera, MapPin, Radio, Activity, RefreshCcw, Sliders,
 export default function App() {
   const { t } = useLanguage();
 
+  const [showLanding, setShowLanding] = useState(true);
   const [activeStateId, setActiveStateId] = useState('meg'); // Default Meghalaya
   const [isOfficialMode, setIsOfficialMode] = useState(false);
   const [activeMobileTab, setActiveMobileTab] = useState('dashboard');
@@ -49,16 +51,20 @@ export default function App() {
       {/* Background Physics Simulation */}
       <LandslideCanvasBg riskLevel={aiResult.riskLevel} active={true} speed={1} />
 
-      {/* Main Container */}
-      <div className="relative z-10 flex flex-col min-h-screen">
-        {/* Navbar */}
-        <Navbar
-          isOfficialMode={isOfficialMode}
-          setIsOfficialMode={setIsOfficialMode}
-          onOpenAiPredictor={() => setIsAiModalOpen(true)}
-          onOpenReportForm={() => setIsReportModalOpen(true)}
-          onOpenEmergencyContacts={() => setIsHelplineOpen(true)}
-        />
+      {showLanding ? (
+        <LandingPage onStartDashboard={() => setShowLanding(false)} />
+      ) : (
+        /* Main Container */
+        <div className="relative z-10 flex flex-col min-h-screen">
+          {/* Navbar */}
+          <Navbar
+            isOfficialMode={isOfficialMode}
+            setIsOfficialMode={setIsOfficialMode}
+            onOpenAiPredictor={() => setIsAiModalOpen(true)}
+            onOpenReportForm={() => setIsReportModalOpen(true)}
+            onOpenEmergencyContacts={() => setIsHelplineOpen(true)}
+            onOpenHome={() => setShowLanding(true)}
+          />
 
         {/* Dashboard Content Area */}
         <main className="max-w-7xl mx-auto px-4 py-5 space-y-6 flex-1 w-full">
@@ -153,6 +159,7 @@ export default function App() {
           </div>
         </main>
       </div>
+      )}
 
       {/* Mobile Bottom Navigation */}
       <MobileNav
