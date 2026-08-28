@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import SlopePhysicsSimulator from '../components/SlopePhysicsSimulator';
 import { calculateAiLandslideRisk } from '../utils/aiRiskEngine';
-import { Cpu, Sliders, Zap, ShieldCheck, AlertTriangle } from 'lucide-react';
+import { Cpu, Sliders } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 
 export default function AiPredictorPage({ aiResult, setAiResult }) {
@@ -28,11 +28,11 @@ export default function AiPredictorPage({ aiResult, setAiResult }) {
   };
 
   return (
-    <div className="space-y-6">
-      <div className="bg-[#121b2d]/90 p-4 rounded-2xl border border-[#1e2c45] flex items-center justify-between">
+    <div className="space-y-5">
+      <div className="bg-[#1e293b] p-4 rounded-xl border border-slate-700/80 flex items-center justify-between">
         <div>
-          <h2 className="text-xl font-bold text-slate-100 flex items-center gap-2">
-            <Cpu className="w-6 h-6 text-cyan-400 animate-pulse" />
+          <h2 className="text-lg font-bold text-slate-100 flex items-center gap-2">
+            <Cpu className="w-5 h-5 text-emerald-400" />
             AI Geotechnical Risk & FoS Neural Engine
           </h2>
           <p className="text-xs text-slate-400 mt-0.5">
@@ -40,25 +40,25 @@ export default function AiPredictorPage({ aiResult, setAiResult }) {
           </p>
         </div>
 
-        <span className="text-xs font-mono font-bold px-3 py-1.5 rounded-xl bg-cyan-500/10 text-cyan-400 border border-cyan-500/30">
+        <span className="text-xs font-mono font-semibold px-3 py-1.5 rounded-lg bg-[#0f172a] text-slate-200 border border-slate-700">
           AI Confidence: {aiResult.confidenceScore}%
         </span>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-5">
         {/* Sliders Controls Panel */}
-        <div className="lg:col-span-5 bg-[#121b2d]/90 p-5 rounded-2xl border border-[#1e2c45] space-y-4 shadow-xl">
-          <h3 className="font-bold text-slate-100 text-sm flex items-center gap-2 border-b border-slate-800 pb-2">
-            <Sliders className="w-4 h-4 text-cyan-400" />
+        <div className="lg:col-span-5 bg-[#1e293b] p-4.5 rounded-xl border border-slate-700/80 space-y-4 shadow-sm">
+          <h3 className="font-bold text-slate-100 text-xs flex items-center gap-2 border-b border-slate-700 pb-2">
+            <Sliders className="w-4 h-4 text-emerald-400" />
             Environmental & Sensor Input Controls
           </h3>
 
-          <div className="space-y-4 text-xs">
+          <div className="space-y-3.5 text-xs">
             {/* Rainfall Slider */}
-            <div className="bg-[#0a0f1d] p-3 rounded-xl border border-slate-800 space-y-1.5">
+            <div className="bg-[#0f172a] p-3 rounded-lg border border-slate-800 space-y-1.5">
               <div className="flex justify-between font-semibold">
                 <span className="text-slate-300">24h Cumulative Rainfall</span>
-                <span className="text-cyan-400 font-bold">{rainfall24h} mm</span>
+                <span className="text-emerald-400 font-bold">{rainfall24h} mm</span>
               </div>
               <input
                 type="range"
@@ -66,15 +66,15 @@ export default function AiPredictorPage({ aiResult, setAiResult }) {
                 max="350"
                 value={rainfall24h}
                 onChange={(e) => handleSliderChange(Number(e.target.value), soilMoisture, slopeAngle, insarDeformation)}
-                className="w-full accent-cyan-400 bg-slate-800 h-2 rounded-lg cursor-pointer"
+                className="w-full accent-emerald-500 bg-slate-800 h-2 rounded-lg cursor-pointer"
               />
             </div>
 
             {/* Soil Moisture Slider */}
-            <div className="bg-[#0a0f1d] p-3 rounded-xl border border-slate-800 space-y-1.5">
+            <div className="bg-[#0f172a] p-3 rounded-lg border border-slate-800 space-y-1.5">
               <div className="flex justify-between font-semibold">
                 <span className="text-slate-300">Soil Saturation Level</span>
-                <span className="text-amber-400 font-bold">{soilMoisture}%</span>
+                <span className="text-amber-500 font-bold">{soilMoisture}%</span>
               </div>
               <input
                 type="range"
@@ -82,12 +82,12 @@ export default function AiPredictorPage({ aiResult, setAiResult }) {
                 max="100"
                 value={soilMoisture}
                 onChange={(e) => handleSliderChange(rainfall24h, Number(e.target.value), slopeAngle, insarDeformation)}
-                className="w-full accent-amber-400 bg-slate-800 h-2 rounded-lg cursor-pointer"
+                className="w-full accent-amber-500 bg-slate-800 h-2 rounded-lg cursor-pointer"
               />
             </div>
 
             {/* Slope Angle Slider */}
-            <div className="bg-[#0a0f1d] p-3 rounded-xl border border-slate-800 space-y-1.5">
+            <div className="bg-[#0f172a] p-3 rounded-lg border border-slate-800 space-y-1.5">
               <div className="flex justify-between font-semibold">
                 <span className="text-slate-300">Terrain Slope Inclination Angle</span>
                 <span className="text-rose-400 font-bold">{slopeAngle}°</span>
@@ -98,15 +98,15 @@ export default function AiPredictorPage({ aiResult, setAiResult }) {
                 max="75"
                 value={slopeAngle}
                 onChange={(e) => handleSliderChange(rainfall24h, soilMoisture, Number(e.target.value), insarDeformation)}
-                className="w-full accent-rose-400 bg-slate-800 h-2 rounded-lg cursor-pointer"
+                className="w-full accent-rose-500 bg-slate-800 h-2 rounded-lg cursor-pointer"
               />
             </div>
 
             {/* Satellite InSAR Slider */}
-            <div className="bg-[#0a0f1d] p-3 rounded-xl border border-slate-800 space-y-1.5">
+            <div className="bg-[#0f172a] p-3 rounded-lg border border-slate-800 space-y-1.5">
               <div className="flex justify-between font-semibold">
                 <span className="text-slate-300">Satellite InSAR Deformation</span>
-                <span className="text-purple-400 font-bold">{insarDeformation} mm/yr</span>
+                <span className="text-sky-400 font-bold">{insarDeformation} mm/yr</span>
               </div>
               <input
                 type="range"
@@ -114,7 +114,7 @@ export default function AiPredictorPage({ aiResult, setAiResult }) {
                 max="40"
                 value={insarDeformation}
                 onChange={(e) => handleSliderChange(rainfall24h, soilMoisture, slopeAngle, Number(e.target.value))}
-                className="w-full accent-purple-400 bg-slate-800 h-2 rounded-lg cursor-pointer"
+                className="w-full accent-sky-500 bg-slate-800 h-2 rounded-lg cursor-pointer"
               />
             </div>
           </div>

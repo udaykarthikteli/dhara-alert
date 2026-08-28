@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 
-export default function LandslideCanvasBg({ riskLevel = 'HIGH', active = true, speed = 1 }) {
+export default function LandslideCanvasBg({ riskLevel = 'HIGH', active = true }) {
   const canvasRef = useRef(null);
 
   useEffect(() => {
@@ -19,95 +19,75 @@ export default function LandslideCanvasBg({ riskLevel = 'HIGH', active = true, s
     };
     window.addEventListener('resize', handleResize);
 
-    // Particle setup
-    const rainCount = riskLevel === 'CRITICAL' ? 140 : riskLevel === 'HIGH' ? 80 : 35;
+    // Rain setup - natural water drops
+    const rainCount = riskLevel === 'CRITICAL' ? 100 : riskLevel === 'HIGH' ? 60 : 25;
     const rainDrops = Array.from({ length: rainCount }, () => ({
       x: Math.random() * width,
       y: Math.random() * height,
-      length: Math.random() * 20 + 10,
-      speed: (Math.random() * 8 + 6) * speed,
-      opacity: Math.random() * 0.4 + 0.1
+      length: Math.random() * 15 + 8,
+      speed: Math.random() * 6 + 4,
+      opacity: Math.random() * 0.25 + 0.1
     }));
 
-    // Debris & Rocks
-    const rockCount = riskLevel === 'CRITICAL' ? 25 : riskLevel === 'HIGH' ? 12 : 4;
+    // Natural Soil & Debris Particles
+    const rockCount = riskLevel === 'CRITICAL' ? 15 : riskLevel === 'HIGH' ? 8 : 2;
     const rocks = Array.from({ length: rockCount }, () => ({
-      x: Math.random() * (width * 0.6),
+      x: Math.random() * (width * 0.5),
       y: Math.random() * (height * 0.5),
-      size: Math.random() * 6 + 2,
-      vx: (Math.random() * 2 + 1) * speed,
-      vy: (Math.random() * 3 + 2) * speed,
-      rot: Math.random() * Math.PI,
-      vRot: (Math.random() - 0.5) * 0.1,
-      color: Math.random() > 0.5 ? '#e11d48' : '#d97706'
+      size: Math.random() * 4 + 2,
+      vx: Math.random() * 1.5 + 0.5,
+      vy: Math.random() * 2 + 1,
+      color: Math.random() > 0.5 ? '#78350f' : '#92400e'
     }));
-
-    let lightningTimer = 0;
 
     const render = () => {
-      // Clear with subtle dark trail
-      ctx.fillStyle = 'rgba(10, 15, 29, 0.25)';
+      // Clear with soft mountain slate stone
+      ctx.fillStyle = 'rgba(15, 23, 42, 0.2)';
       ctx.fillRect(0, 0, width, height);
 
-      // Render Mountain Silhouette Background
-      ctx.fillStyle = 'rgba(18, 27, 45, 0.4)';
+      // Render Mountain Contour Silhouette
+      ctx.fillStyle = 'rgba(30, 41, 59, 0.3)';
       ctx.beginPath();
       ctx.moveTo(0, height);
-      ctx.lineTo(0, height * 0.65);
-      ctx.quadraticCurveTo(width * 0.25, height * 0.45, width * 0.5, height * 0.7);
-      ctx.quadraticCurveTo(width * 0.75, height * 0.85, width, height * 0.55);
+      ctx.lineTo(0, height * 0.7);
+      ctx.quadraticCurveTo(width * 0.3, height * 0.5, width * 0.6, height * 0.75);
+      ctx.quadraticCurveTo(width * 0.8, height * 0.85, width, height * 0.6);
       ctx.lineTo(width, height);
       ctx.closePath();
       ctx.fill();
 
       // Render Rain
-      ctx.lineWidth = 1.2;
+      ctx.lineWidth = 1;
       rainDrops.forEach((d) => {
-        ctx.strokeStyle = `rgba(0, 240, 255, ${d.opacity})`;
+        ctx.strokeStyle = `rgba(148, 163, 184, ${d.opacity})`;
         ctx.beginPath();
         ctx.moveTo(d.x, d.y);
-        ctx.lineTo(d.x - 2, d.y + d.length);
+        ctx.lineTo(d.x - 1, d.y + d.length);
         ctx.stroke();
 
         d.y += d.speed;
-        d.x -= d.speed * 0.15;
+        d.x -= d.speed * 0.1;
         if (d.y > height) {
-          d.y = -20;
+          d.y = -15;
           d.x = Math.random() * width;
         }
       });
 
-      // Render Falling Rocks & Debris Particles (Landslide Simulation)
+      // Render Natural Debris Particles
       rocks.forEach((r) => {
-        ctx.save();
-        ctx.translate(r.x, r.y);
-        ctx.rotate(r.rot);
         ctx.fillStyle = r.color;
-        ctx.shadowColor = r.color;
-        ctx.shadowBlur = 8;
         ctx.beginPath();
-        ctx.rect(-r.size / 2, -r.size / 2, r.size, r.size);
+        ctx.rect(r.x, r.y, r.size, r.size);
         ctx.fill();
-        ctx.restore();
 
         r.x += r.vx;
         r.y += r.vy;
-        r.rot += r.vRot;
 
         if (r.y > height || r.x > width) {
-          r.x = Math.random() * (width * 0.4);
+          r.x = Math.random() * (width * 0.3);
           r.y = -10;
         }
       });
-
-      // Flash Lightning effect if CRITICAL risk
-      if (riskLevel === 'CRITICAL') {
-        lightningTimer++;
-        if (lightningTimer % 180 === 0 && Math.random() > 0.5) {
-          ctx.fillStyle = 'rgba(255, 42, 95, 0.12)';
-          ctx.fillRect(0, 0, width, height);
-        }
-      }
 
       animationFrameId = requestAnimationFrame(render);
     };
@@ -118,12 +98,12 @@ export default function LandslideCanvasBg({ riskLevel = 'HIGH', active = true, s
       window.removeEventListener('resize', handleResize);
       cancelAnimationFrame(animationFrameId);
     };
-  }, [riskLevel, active, speed]);
+  }, [riskLevel, active]);
 
   return (
     <canvas
       ref={canvasRef}
-      className="fixed inset-0 pointer-events-none z-0 transition-opacity duration-700"
+      className="fixed inset-0 pointer-events-none z-0 opacity-80"
     />
   );
 }
