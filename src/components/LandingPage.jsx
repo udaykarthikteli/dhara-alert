@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { ShieldCheck, Cpu, MapPin, Radio, ArrowRight, Activity, CheckCircle2, Globe, Mountain } from 'lucide-react';
-import { useLanguage } from '../context/LanguageContext';
+import DharaLogo from './DharaLogo';
 
 export default function LandingPage({ onStartDashboard }) {
   const { t } = useLanguage();
@@ -33,11 +33,7 @@ export default function LandingPage({ onStartDashboard }) {
       >
         {/* Official Uploaded Logo Image */}
         <div className="cursor-pointer transition-transform hover:scale-105" onClick={onStartDashboard}>
-          <img
-            src="/logo.png"
-            alt="Dhara Alert Logo"
-            className="w-56 md:w-72 max-h-72 object-contain drop-shadow-xl mx-auto"
-          />
+          <DharaLogo size="xl" />
         </div>
 
         {/* Title & Tagline */}

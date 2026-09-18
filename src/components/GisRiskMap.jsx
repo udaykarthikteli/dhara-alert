@@ -4,7 +4,7 @@ import { Radio, Layers } from 'lucide-react';
 import { nerStatesData, sampleCitizenReports } from '../data/nerDistricts';
 import { useLanguage } from '../context/LanguageContext';
 
-export default function GisRiskMap({ activeStateId, onSelectHotspot }) {
+export default function GisRiskMap({ activeStateId }) {
   const mapContainerRef = useRef(null);
   const mapInstanceRef = useRef(null);
   const { t } = useLanguage();
@@ -24,10 +24,9 @@ export default function GisRiskMap({ activeStateId, onSelectHotspot }) {
     L.control.zoom({ position: 'topright' }).addTo(map);
 
     // Dark GIS Map Tiles (CartoDB Dark Matter)
-    L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
-      attribution: '&copy; OpenStreetMap &copy; CARTO',
-      maxZoom: 18,
-      subdomains: 'abcd'
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; OpenStreetMap contributors',
+      maxZoom: 19
     }).addTo(map);
 
     mapInstanceRef.current = map;

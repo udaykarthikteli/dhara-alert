@@ -56,7 +56,7 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-[#0a0f1d] text-slate-100 font-sans relative overflow-x-hidden pb-20 md:pb-10 selection:bg-cyan-500 selection:text-black">
+        <div className="min-h-screen bg-earth-bg text-slate-100 font-sans relative overflow-x-hidden pb-20 md:pb-10 selection:bg-cyan-500 selection:text-black">
       {/* Background Physics Simulation */}
       <LandslideCanvasBg riskLevel={aiResult.riskLevel} active={true} speed={1} />
 

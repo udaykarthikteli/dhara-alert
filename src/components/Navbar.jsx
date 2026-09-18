@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Globe, ShieldAlert, Mountain } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
+import DharaLogo from './DharaLogo';
 
 export default function Navbar({
   isOfficialMode,
@@ -27,7 +28,7 @@ export default function Navbar({
   ];
 
   return (
-    <header className="sticky top-0 z-40 bg-[#1e293b] border-b border-slate-700/80 shadow-md">
+        <header className="sticky top-0 z-40 bg-earth-forest border-b border-slate-700/80 shadow-md">
       <div className="max-w-7xl mx-auto px-4 py-2.5 flex items-center justify-between gap-3">
         {/* Brand Logo & Title with uploaded logo icon */}
         <div
@@ -35,7 +36,7 @@ export default function Navbar({
           className="flex items-center gap-2.5 cursor-pointer group"
           title="Return to Home Landing Screen"
         >
-          <img src="/logo.png" alt="Dhara Alert Logo" className="h-9 w-auto object-contain" />
+          <DharaLogo size="lg" />
           <div>
             <div className="flex items-center gap-2">
               <h1 className="font-extrabold text-slate-100 text-base md:text-lg tracking-tight group-hover:text-emerald-400 transition-colors">
