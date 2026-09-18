@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import Map, { Source, Layer } from 'react-map-gl';
+import { Map, Source, Layer } from '@vis.gl/react-mapbox';
 
 // Mapbox token – placeholder (public token can be used). If no token, the map will still load raster tiles but 3D terrain may be limited.
 const MAPBOX_TOKEN = process.env.REACT_APP_MAPBOX_TOKEN || '';
