@@ -16,6 +16,8 @@ import AiPredictorPage from './pages/AiPredictorPage';
 import HighwaysPage from './pages/HighwaysPage';
 import ReportsPage from './pages/ReportsPage';
 import HelplinePage from './pages/HelplinePage';
+import AdminDashboard from './pages/AdminDashboard';
+import ThreeDTerrainPage from './pages/ThreeDTerrainPage';
 
 import { calculateAiLandslideRisk } from './utils/aiRiskEngine';
 import { nerStatesData, sampleCitizenReports } from './data/nerDistricts';
@@ -107,8 +109,9 @@ export default function App() {
             {activePage === 'highways' && <HighwaysPage />}
 
             {activePage === 'reports' && <ReportsPage />}
-
             {activePage === 'helpline' && <HelplinePage />}
+            {activePage === 'admin' && <AdminDashboard />}
+            {activePage === 'terrain' && <ThreeDTerrainPage />}
           </main>
         </div>
       )}

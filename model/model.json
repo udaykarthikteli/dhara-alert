@@ -1,0 +1,19 @@
+{
+  "modelTopology": {
+    "class_name": "Sequential",
+    "config": {
+      "layers": [
+        {
+          "class_name": "Dense",
+          "config": {
+            "units": 1,
+            "activation": "linear",
+            "kernelInitializer": { "class_name": "Zeros" },
+            "biasInitializer": { "class_name": "Zeros" }
+          }
+        }
+      ]
+    }
+  },
+  "weightsManifest": []
+}

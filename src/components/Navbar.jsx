@@ -24,7 +24,9 @@ export default function Navbar({
     { id: 'ai', label: 'AI Simulator' },
     { id: 'highways', label: 'Highways' },
     { id: 'reports', label: 'Field Reports' },
-    { id: 'helpline', label: 'Helplines' }
+    { id: 'helpline', label: 'Helplines' },
+    { id: 'admin', label: 'Admin' },
+    { id: 'terrain', label: '3D Terrain' }
   ];
 
   return (

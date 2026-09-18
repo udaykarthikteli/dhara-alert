@@ -1,5 +1,5 @@
 import React from 'react';
-import { Home, Map, Cpu, Camera, PhoneCall } from 'lucide-react';
+import { Home, Map, Cpu, Camera, PhoneCall, Settings, Layers } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 
 export default function MobileNav({
@@ -55,6 +55,20 @@ export default function MobileNav({
         >
           <PhoneCall className="w-5 h-5 text-rose-400" />
           <span>Helpline</span>
+        </button>
+        <button
+          onClick={() => setActiveTab('admin')}
+          className={`flex flex-col items-center gap-1 p-1.5 text-[10px] font-bold ${activeTab === 'admin' ? 'text-cyan-400' : 'text-slate-400'}`}
+        >
+          <Settings className="w-5 h-5" />
+          <span>Admin</span>
+        </button>
+        <button
+          onClick={() => setActiveTab('terrain')}
+          className={`flex flex-col items-center gap-1 p-1.5 text-[10px] font-bold ${activeTab === 'terrain' ? 'text-cyan-400' : 'text-slate-400'}`}
+        >
+          <Layers className="w-5 h-5" />
+          <span>Terrain</span>
         </button>
       </div>
     </nav>
