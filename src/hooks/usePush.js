@@ -1,7 +1,7 @@
 import { useEffect, useState, useContext } from 'react';
 import { AuthContext } from '../context/AuthContext';
 
-export default function usePush() {
+export function usePush() {
   const { authHeaders } = useContext(AuthContext);
   const [subscription, setSubscription] = useState(null);
   const [vapidPublicKey, setVapidPublicKey] = useState('');
@@ -44,3 +44,5 @@ export default function usePush() {
 
   return { subscription, subscribe };
 }
+
+export default usePush;
