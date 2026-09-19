@@ -2,6 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { ShieldCheck, Cpu, MapPin, Radio, ArrowRight, Activity, CheckCircle2, Globe, Mountain } from 'lucide-react';
 import DharaLogo from './DharaLogo';
+import { useLanguage } from '../context/LanguageContext';
 
 export default function LandingPage({ onStartDashboard }) {
   const { t } = useLanguage();
