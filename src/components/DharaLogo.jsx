@@ -1,7 +1,7 @@
 import React from 'react';
 
 export default function DharaLogo({ className = "h-12 w-auto", showText = true, size = "md" }) {
-  const iconSize = size === "lg" ? "w-28 h-28" : size === "xl" ? "w-40 h-40" : "w-10 h-10";
+  const iconSize = size === "lg" ? "w-10 h-10" : size === "xl" ? "w-40 h-40" : "w-8 h-8";
 
   return (
     <div className={`flex items-center gap-3 select-none ${size === "xl" ? "flex-col text-center" : ""}`}>
@@ -42,15 +42,15 @@ export default function DharaLogo({ className = "h-12 w-auto", showText = true, 
       {/* Typography */}
       {showText && (
         <div className="flex flex-col">
-          <div className="flex items-baseline gap-1.5 leading-none">
-            <span className="font-black tracking-tight text-[#1b4332] text-xl md:text-2xl uppercase">
+          <div className="flex items-baseline gap-1 leading-none">
+            <span className="font-black tracking-tight text-[#1b4332] text-base uppercase">
               DHARA
             </span>
-            <span className="font-black tracking-tight text-[#c05621] text-xl md:text-2xl uppercase">
+            <span className="font-black tracking-tight text-[#c05621] text-base uppercase">
               ALERT
             </span>
           </div>
-          <span className="text-[10px] md:text-xs font-semibold tracking-wider text-[#475569] uppercase mt-0.5">
+          <span className="text-[10px] font-semibold tracking-wider text-[#475569] uppercase mt-0.5">
             Smarter Warnings. Safer Hills.
           </span>
         </div>

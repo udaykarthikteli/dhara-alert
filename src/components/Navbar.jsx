@@ -38,18 +38,10 @@ export default function Navbar({
           className="flex items-center gap-2.5 cursor-pointer group"
           title="Return to Home Landing Screen"
         >
-          <DharaLogo size="lg" />
-          <div>
-            <div className="flex items-center gap-2">
-              <h1 className="font-extrabold text-slate-100 text-base md:text-lg tracking-tight group-hover:text-emerald-400 transition-colors">
-                {t('appTitle')}
-              </h1>
-              <span className="hidden sm:inline-block text-[10px] font-bold px-2 py-0.5 rounded-md bg-emerald-950/80 text-emerald-400 border border-emerald-800">
-                NER AI v2.0
-              </span>
-            </div>
-            <p className="text-[10px] text-slate-400 hidden md:block">Smarter Warnings. Safer Hills.</p>
-          </div>
+          <DharaLogo size="lg" showText={true} />
+          <span className="hidden sm:inline-block self-start mt-1 text-[10px] font-bold px-2 py-0.5 rounded-md bg-emerald-950/80 text-emerald-400 border border-emerald-800">
+            NER AI v2.0
+          </span>
         </div>
 
         {/* Page Nav Links (Desktop) */}
