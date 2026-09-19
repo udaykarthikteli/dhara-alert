@@ -1,5 +1,5 @@
 import express from 'express';
-import { Parser } from '@json2csv/node';
+// json2csv import removed (not needed)
 import PDFDocument from 'pdfkit';
 import fs from 'fs';
 import path from 'path';
@@ -14,8 +14,9 @@ let sampleData = [
 
 router.get('/csv', (req, res) => {
   const fields = ['timestamp', 'temperature', 'rainfall', 'moisture', 'riskScore'];
-  const json2csv = new Parser({ fields });
-  const csv = json2csv.parse(sampleData);
+  const header = fields.join(',');
+  const rows = sampleData.map(item => fields.map(f => item[f]).join(','));
+  const csv = [header, ...rows].join('\n');
   res.header('Content-Type', 'text/csv');
   res.attachment('report.csv');
   res.send(csv);

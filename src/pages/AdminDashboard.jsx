@@ -8,7 +8,7 @@ import { exportIncidentCsv, exportIncidentPdf } from '../utils/reportExporter';
 
 export default function AdminDashboard() {
   const { token, login, logout } = useContext(AuthContext);
-  const [email, setEmail] = useState('admin@dhara-alert.gov.in');
+  const [email, setEmail] = useState('admin@example.com');
   const [password, setPassword] = useState('password');
   const [loginError, setLoginError] = useState(null);
   const { subscribe, subscription } = usePush();
@@ -48,7 +48,7 @@ export default function AdminDashboard() {
         <div>
           <h2 className="text-xl font-bold text-slate-100 flex items-center gap-2">
             <ShieldCheck className="w-6 h-6 text-cyan-400" />
-            Official Disaster Management Command Console
+            Disaster Management Authority Console
           </h2>
           <p className="text-xs text-slate-400 mt-0.5">
             Restricted access for SDMA / NDRF Incident Commanders, Telemetry Officers & Field Directors
@@ -61,14 +61,14 @@ export default function AdminDashboard() {
             className="px-3 py-1.5 rounded-xl bg-emerald-600/20 hover:bg-emerald-600/30 border border-emerald-500/40 text-emerald-300 font-semibold text-xs flex items-center gap-1.5 transition"
           >
             <FileSpreadsheet className="w-3.5 h-3.5 text-emerald-400" />
-            <span>Export CSV Sheet</span>
+            <span>Export CSV</span>
           </button>
           <button
             onClick={() => exportIncidentPdf(allReports)}
             className="px-3 py-1.5 rounded-xl bg-cyan-600/20 hover:bg-cyan-600/30 border border-cyan-500/40 text-cyan-300 font-semibold text-xs flex items-center gap-1.5 transition"
           >
             <FileText className="w-3.5 h-3.5 text-cyan-400" />
-            <span>Generate Official SITREP</span>
+            <span>Export PDF SITREP</span>
           </button>
         </div>
       </div>
@@ -79,7 +79,7 @@ export default function AdminDashboard() {
             <div className="w-12 h-12 rounded-2xl bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center mx-auto text-cyan-400 mb-2">
               <Lock className="w-6 h-6" />
             </div>
-            <h3 className="text-base font-bold text-slate-100">Disaster Authority Login</h3>
+            <h3 className="text-base font-bold text-slate-100">Disaster Management Authority Login</h3>
             <p className="text-xs text-slate-400">Enter your credentials to access command tools</p>
           </div>
 
