@@ -8,6 +8,7 @@ import AiPredictorModal from './components/AiPredictorModal';
 import FieldReportForm from './components/FieldReportForm';
 import EmergencyContactsModal from './components/EmergencyContactsModal';
 import LandingPage from './components/LandingPage';
+import OfflineBanner from './components/OfflineBanner';
 
 // Pages
 import HomePage from './pages/HomePage';
@@ -61,6 +62,9 @@ export default function App() {
         <div className="min-h-screen bg-earth-bg text-slate-100 font-sans relative overflow-x-hidden pb-20 md:pb-10 selection:bg-cyan-500 selection:text-black">
       {/* Background Physics Simulation */}
       <LandslideCanvasBg riskLevel={aiResult.riskLevel} active={true} speed={1} />
+
+      {/* Offline Status & Sync Banner */}
+      <OfflineBanner />
 
       {showLanding ? (
         <LandingPage onStartDashboard={() => setShowLanding(false)} />

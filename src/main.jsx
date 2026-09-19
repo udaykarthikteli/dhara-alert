@@ -20,9 +20,11 @@ ReactDOM.createRoot(document.getElementById('root')).render(
 );
 
 // Register service worker for offline PWA functionality
-if ('serviceWorker' in navigator && import.meta.env.PROD) {
+if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
-    navigator.serviceWorker.register('/sw.js').catch((err) => {
+    navigator.serviceWorker.register('/sw.js').then((reg) => {
+      console.log('Dhara Alert ServiceWorker registered successfully:', reg.scope);
+    }).catch((err) => {
       console.log('ServiceWorker registration failed: ', err);
     });
   });

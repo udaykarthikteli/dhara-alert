@@ -1,0 +1,24 @@
+﻿{
+  "name": "Dhara Alert - AI Landslide Early Warning",
+  "short_name": "Dhara Alert",
+  "description": "AI-Powered real-time landslide risk prediction, GIS hazard mapping, and offline crowdsourced field reporting for North-East India.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0a0f1d",
+  "theme_color": "#06b6d4",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/logo.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
