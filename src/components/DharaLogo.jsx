@@ -43,7 +43,7 @@ export default function DharaLogo({ className = "h-12 w-auto", showText = true, 
       {showText && (
         <div className="flex flex-col">
           <div className="flex items-baseline gap-1 leading-none">
-            <span className="font-black tracking-tight text-[#1b4332] text-base uppercase">
+            <span className="font-black tracking-tight text-[#52b788] text-base uppercase">
               DHARA
             </span>
             <span className="font-black tracking-tight text-[#c05621] text-base uppercase">
